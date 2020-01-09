@@ -1,6 +1,16 @@
-# WASM Redex Model
-This is a model of the WebAssembly language syntax, semantics, and (in progress) validation rules.
+# WebAssmebly model
+This is a model of the WebAssembly (WASM) language syntax, semantics, and (in progress) validation rules.
+WASM is a rather unique language, even among modern languages, in the sense that it has a complete formal specification.
 The model is based off of the [2017 PLDI paper by Haas et al](https://dl.acm.org/doi/10.1145/3062341.3062363).
+
+My goal with creating this model is to provide a starting point for modeling extensions to the language.
+For example, one could extend (or even completely replace the type system) while maintaining the original syntax and semantics.
+
+More information on redex:
+* [A helpful introduction and tutorial](https://www.williamjbowman.com/doc/experimenting-with-redex/index.html)
+* [The redex reference](https://docs.racket-lang.org/redex/The_Redex_Reference.html)
+
+Here are more details about the various aspects of the redex model and how they correspond to the formal specification.
 
 ## Syntax
 The syntactic representation used in the model is `s-expression` based.
@@ -9,11 +19,10 @@ Other small differences include:
 * The removal of the `.` character between types and a number of terminal expressions (e.g., `(i32.add)` becomes `(i32 add)`).
 * Optional terms are handled via enumeration or faked using lists (there's a hidden low-priority TODO to clean this up).
 
-The WASM Redex language is defined in `Syntax.rkt`. A typeset version can be viewed below and uses similar terminology to the 
+The WASM Redex language is defined in `Syntax.rkt`.
+A typeset version can be viewed below and tries to keep terminal and non-terminal names consistent with those in the paper.
 
 ![The WebAssembly language syntax](Syntax.pdf)
-
-
 
 ## Semantics
 The reduction relation is in the form of a small-step operational semantics inside an evaluation context.
